@@ -1,0 +1,83 @@
+<div>
+  <div class="container mx-auto p-4">
+    <!-- Header -->
+    <div class="mb-4">
+      <h1>Star Wars Characters</h1>
+      <p>Explore the galaxy's greatest heroes and villains</p>
+    </div>
+
+    <!-- Search -->
+    <div class="mb-4">
+      <input 
+        type="search" 
+        [formControl]="searchControl"
+        class="w-full p-2 border rounded"
+        placeholder="Search characters...">
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div class="p-4 border">
+        <div>Total Characters</div>
+        <div>{{ totalCount }}</div>
+      </div>
+      <div class="p-4 border">
+        <div>Total Population</div>
+        <div>{{ getTotalPopulation() | number }}</div>
+      </div>
+      <div class="p-4 border">
+        <div>Unique Planets</div>
+        <div>{{ getUniquePlanets() }}</div>
+      </div>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="p-4 mb-4 border">
+      {{ error }}
+    </div>
+
+    <!-- Data Table -->
+    <div class="overflow-x-auto mb-4">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="p-2 text-left">Name</th>
+            <th class="p-2 text-left">Birth Year</th>
+            <th class="p-2 text-left">Homeworld</th>
+            <th class="p-2 text-left">Terrain</th>
+            <th class="p-2 text-left">Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of people; trackBy: trackByName">
+            <td class="p-2">{{ person.name }}</td>
+            <td class="p-2">{{ person.birth_year }}</td>
+            <td class="p-2">{{ getHomeworldName(person) }}</td>
+            <td class="p-2">{{ getTerrain(person) }}</td>
+            <td class="p-2">{{ getPopulation(person) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="loading-indicator mx-auto"></div>
+      <div class="mt-2">
+        {{ currentPage === 1 ? 'Loading characters...' : 'Loading more characters...' }}
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div *ngIf="!loading && people.length === 0" class="text-center py-4">
+      No characters found
+    </div>
+
+    <!-- Intersection Observer Target -->
+    <div #intersectionTarget class="h-20">
+      <div *ngIf="hasMore && !loading" class="text-center">
+        Scroll to load more...
+      </div>
+    </div>
+  </div>
+</div>

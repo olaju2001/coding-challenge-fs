@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "rootDir": ".",
+      "sourceMap": true,
+      "declaration": false,
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "target": "es2022",
+      "module": "esnext",
+      "lib": ["es2020", "dom"],
+      "skipLibCheck": true,
+      "skipDefaultLibCheck": true,
+      "baseUrl": ".",
+      "paths": {
+        "@memberspot-project/shared-models": ["shared-models/src/index.ts"]
+      }
+    },
+    "exclude": ["node_modules", "tmp"]
+  }

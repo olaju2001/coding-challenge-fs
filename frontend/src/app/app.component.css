@@ -1,0 +1,16 @@
+.min-h-screen {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+}
